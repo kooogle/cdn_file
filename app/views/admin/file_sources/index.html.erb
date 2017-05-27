@@ -1,0 +1,75 @@
+<%= content_for(:title,  '文件管理列表 | Master') %>
+<section class="content-header">
+  <h1>
+    文件管理 <small>信息预览</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li class="active"><i class="fa fa-bicycle"></i> 文件管理</li>
+  </ol>
+</section>
+<section class="content">
+  <div class="box box-primary">
+    <div class="box-header">
+      <div class="row">
+        <div class="col-sm-4">
+          <form action="<%= admin_file_sources_path %>" method="get">
+            <div class="form-group has-feedback">
+              <div class="input-group">
+                <input type="text" name="query" value="<%= params[:query]%>" class="form-control" placeholder="名称">
+                <span class="input-group-btn">
+                  <button class="btn btn-default btn-flat" type="submit"><i class="fa fa-search-plus"></i></button>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-8">
+          <a href="<%= new_admin_file_source_path %>" class="btn bg-primary btn-flat" style="float: right;"><i class="ion-plus"></i> 添加样品</a>
+        </div>
+      </div>
+    </div>
+    <div class="box-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+            <thead>
+            <tr>
+              <th tabindex="0" aria-controls="example1" style="text-align: center;">名称</th>
+              <th tabindex="0" aria-controls="example1" style="text-align: center;">类型</th>
+              <th tabindex="0" aria-controls="example1" style="text-align: center;">大小</th>
+              <th tabindex="0" aria-controls="example1" style="text-align: center;">路径</th>
+              <th tabindex="0" aria-controls="example1" style="text-align: center;width: 200px">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @sources.each do |item| %>
+              <tr style="text-align: center;">
+                <td><%= item.file_name %></td>
+                <td><%= item.file_type %></td>
+                <td><%= number_to_human_size item.file_size %></td>
+                <td><a href="/<%= item.file_path %>"><%= item.file_name %></a></td>
+                <td>
+                  <a href="<%= edit_admin_file_source_path(item) %>" class="btn bg-green btn-flat">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    编辑
+                  </a>
+                  <a href="<%= admin_file_source_path(item) %>" class="btn bg-red btn-flat" data-method="delete" data-confirm="确定删除车型品类吗？">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    删除
+                  </a>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= will_paginate @sources, :class=>'apple_pagination' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

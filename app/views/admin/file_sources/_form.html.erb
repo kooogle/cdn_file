@@ -1,0 +1,70 @@
+<%= form_for(['admin',@source]) do |f| %>
+<div class="box-body">
+  <div class="col-md-5">
+  <% if action_name == 'new' %>
+    <div class="form-group has-error">
+      <label>本地文件</label>
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-fa"></i>
+        </div>
+        <%= f.file_field :local_file, class:'form-control' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="form-group has-success">
+      <label>名称</label>
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-file-word-o"></i>
+        </div>
+        <%= f.text_field :file_name, class:'form-control', placeholder:'（必填* ）' %>
+      </div>
+    </div>
+    <div class="form-group has-success">
+      <label>类型</label>
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-flag"></i>
+        </div>
+        <%= f.text_field :file_type, class:'form-control', placeholder:'（必填* ）' %>
+      </div>
+    </div>
+    <div class="form-group has-success">
+      <label>大小</label>
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-gear"></i>
+        </div>
+        <%= f.text_field :file_size, class:'form-control', placeholder:'（必填* ）' %>
+      </div>
+    </div>
+    <div class="form-group has-success">
+      <label>值块</label>
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-file-code-o"></i>
+        </div>
+        <%= f.text_field :file_md5, class:'form-control', placeholder:'（必填* ）' %>
+      </div>
+    </div>
+    <div class="form-group has-success">
+      <label>路径</label>
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-folder-o"></i>
+        </div>
+        <%= f.text_field :file_path, class:'form-control', placeholder:'（必填* ）' %>
+      </div>
+    </div>
+  <% end %>
+  </div>
+  <div class="col-md-12">
+    <hr>
+    <div>
+      <button type="submit" class="btn bg-maroon btn-flat" style="width: 120px">提交</button>
+      <a href="<%= admin_file_sources_path %>" class="btn bg-navy btn-flat" style="width: 120px">取消</a>
+    </div>
+  </div>
+</div>
+<% end %>
