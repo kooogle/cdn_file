@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def set_admin
-    self.update_attributes(role:0) if self.id == 1
+    self.update_attributes(role:0) if User.where(role:0).count == 0
   end
 
   def set_nick_name
