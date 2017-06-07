@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable, :validatable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  before_create :set_admin
+  after_create :set_admin
   scope :recent, -> {order(updated_at: :desc)}
   self.per_page = 10
 

@@ -1,0 +1,22 @@
+<%= form_for(['admin',@user]) do |f| %>
+<div class="box-body">
+  <div class="col-md-5">
+    <div class="form-group has-success">
+      <label>用户权限</label>
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-black-tie"></i>
+        </div>
+        <%= f.select(:role, [['老司机', 0], ['小朋友', 1]],{prompt:'请选择权限'},{class:'form-control',style:'width:240px'}) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <hr>
+    <div>
+      <button type="submit" class="btn bg-maroon btn-flat" style="width: 120px">提交</button>
+      <a href="<%= admin_users_path %>" class="btn bg-navy btn-flat" style="width: 120px">取消</a>
+    </div>
+  </div>
+</div>
+<% end %>
