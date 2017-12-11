@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
   # before_action :allow_page_caching
+  before_action :redirect_to_origin
 
   rescue_from CanCan::AccessDenied do |exception|
     if current_user
@@ -12,6 +13,14 @@ class ApplicationController < ActionController::Base
     else
       respond_to do |format|
         format.html { redirect_to sign_in_path }
+      end
+    end
+  end
+
+  def redirect_to_origin
+    if Rails.env.production?
+      unless request.host.include?('koogle.cc')
+        redirect_to "http://#{request.host}"
       end
     end
   end
